@@ -32,6 +32,10 @@ class Member
      */
     public function getArchives()
     {
+        if (!$this->archives) {
+            throw new MemberException('会员资料查询失败');
+        }
+
         $item = array_merge($this->archives, $this->score);
         unset($item['customerid']);
 
@@ -143,6 +147,11 @@ request;
         $this->findScore();
 
         return $this;
+    }
+
+    public function add($name)
+    {
+
     }
 
     private function findScore()
