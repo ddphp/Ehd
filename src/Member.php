@@ -131,6 +131,14 @@ request;
 
         $xml = simplexml_import_dom(Array2XML::createXML('request', $request))->asXML();
         $chg = $this->soapClient->chghyda(['pm_xml' => $xml]);
+        $i = 0;
+        while (!$chg) {
+            $i++;
+            if ($i > 3) {
+                break;
+            }
+            $chg = $this->soapClient->chghyda(['pm_xml' => $xml]);
+        }
         $chg = \LaLit\XML2Array::createArray($chg->chghydaResult)['response'];
 
         if ($chg['resultCode'] === '') {

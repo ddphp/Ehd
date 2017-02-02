@@ -14,7 +14,7 @@ class SoapClient
     public static function get($wsdl)
     {
         if (!isset(self::$soapClient[$wsdl])) {
-            self::$soapClient[$wsdl] = app(SoapClientService::class, [$wsdl]);
+            self::$soapClient[$wsdl] = new SoapClientService($wsdl);
         }
 
         return self::$soapClient[$wsdl];
