@@ -140,6 +140,11 @@ class Regist
 
     private function randCardid()
     {
-        return $this->prefix . str_pad(rand(0, pow(10, $this->figure - strlen($this->prefix)) -1), $this->figure, '0', STR_PAD_LEFT);
+        return $this->prefix . str_pad(
+            rand(0, pow(10, $this->figure - strlen($this->prefix)) -1),
+            $this->figure - strlen($this->prefix),
+            '0',
+            STR_PAD_LEFT
+        );
     }
 }
